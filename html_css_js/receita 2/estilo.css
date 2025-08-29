@@ -1,0 +1,61 @@
+/* versos normais */
+.verso {
+   font-family: Georgia, serif;
+   font-size: 18px;
+   margin: 2px 0;
+}
+
+/* mote destacado em vermelho */
+.mote {
+   color: red;
+   font-weight: bold;
+}
+
+/* links estilizados */
+.link-poeta {
+   text-decoration: none;
+   color: darkblue;
+   font-weight: bold;
+}
+
+.link-poeta:hover {
+   color: orange;
+   text-decoration: underline;
+}
+
+.link-poeta:visited {
+   color: purple;
+}
+
+/* avatar do poeta */
+.poeta img {
+   width: 120px;
+   height: 120px;
+   border-radius: 50%;   /* deixa a imagem redonda */
+   object-fit: cover;
+   margin-bottom: 10px;
+}
+
+/* tabela estilizada */
+table {
+   border-collapse: collapse;
+   width: 400px;
+   margin-top: 20px;
+   box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+}
+
+th, td {
+   border: 1px solid #ddd;
+   padding: 10px;
+   text-align: center;
+   font-size: 16px;
+}
+
+th {
+   background-color: #4CAF50;
+   color: white;
+}
+
+tr:nth-child(even) {
+   background-color: #f9f9f9;
+}

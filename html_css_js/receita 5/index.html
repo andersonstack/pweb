@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>   
+   <head>
+      <meta charset="UTF-8">      
+      <title>Exercício Arrow Functions</title>
+      <style>
+         body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+         }
+         a {
+            display: inline-block;
+            margin-right: 15px;
+            color: darkblue;
+            text-decoration: none;
+            font-weight: bold;
+         }
+         a:hover {
+            color: orange;
+            text-decoration: underline;
+         }
+         #meu-amor {
+            margin-top: 20px;
+         }
+         table {
+            border-collapse: collapse;
+            width: 300px;
+            margin-top: 20px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+            font-family: Arial, sans-serif;
+            text-align: center;
+         }
+         th {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+         }
+         td {
+            border: 1px solid #ddd;
+            padding: 8px;
+         }
+         tr:nth-child(even) {
+            background-color: #f9f9f9;
+         }
+      </style>
+   </head>
+   
+   <body>
+      <!-- Links no lugar de botões -->
+      <a href="#" id="linkCarregar">Mostrar Sorvetes</a>
+      <a href="#" id="linkOrdenar">Mostrar Ordenados</a>
+      <a href="#" id="linkEmbaralhar">Embaralhar</a>
+
+      <!-- Div que recebe a lista/tabela -->
+      <div id="meu-amor"></div>            
+   </body>   
+
+   <script>
+      // Array escolhido → sorvetes 🍦
+      const sorvetes = ["Chocolate", "Morango", "Baunilha", "Pistache", "Coco"];
+
+      // Função carregarDiv agora recebe um array como parâmetro
+      const carregarDiv = cervs => {
+         const div = document.getElementById("meu-amor");
+         const sorvetesHtml = cervs.map(item => `<div>${item}</div>`);
+         div.innerHTML = sorvetesHtml.join("\n");
+      };
+
+      // Versão em tabela
+      const renderizarTabela = cervs => {
+         const html = `
+            <table>
+               <tr><th>Sorvete</th></tr>
+               ${cervs.map(item => `<tr><td>${item}</td></tr>`).join("")}
+            </table>
+         `;
+         document.getElementById("meu-amor").innerHTML = html;
+      };
+
+      // Mostrar na ordem original
+      const mostrar = () => renderizarTabela(sorvetes);
+
+      // Mostrar ordenados
+      const ordenar = () => {
+         const ordenados = [...sorvetes].sort();
+         renderizarTabela(ordenados);
+      };
+
+      // Embaralhar
+      const embaralhar = () => {
+         const embaralhados = [...sorvetes].sort(() => Math.random() - 0.5);
+         renderizarTabela(embaralhados);
+      };
+
+      // Eventos nos links
+      document.getElementById("linkCarregar").addEventListener("click", e => {
+         e.preventDefault();
+         mostrar();
+      });
+
+      document.getElementById("linkOrdenar").addEventListener("click", e => {
+         e.preventDefault();
+         ordenar();
+      });
+
+      document.getElementById("linkEmbaralhar").addEventListener("click", e => {
+         e.preventDefault();
+         embaralhar();
+      });
+   </script>
+</html>

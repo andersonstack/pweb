@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">   
+<head>
+  <meta charset="UTF-8">      
+  <title>Cafés Quentes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1>☕ Cafés Quentes</h1>
+  <div>
+    <button id="botaoCarregar">Carregar Cafés</button>
+  </div>
+  <div id="cafesDiv"></div>            
+
+  <script src="tabela.js"></script>
+  <script>
+    async function carregarCafes() {
+      try {
+        let res = await fetch("https://api.sampleapis.com/coffee/hot")
+        let cafes = await res.json()
+
+        // adaptamos para só exibir algumas propriedades relevantes
+        const headers = ["Nome", "Descrição", "Ingredientes", "Imagem"]
+        const props = ["title", "description", "ingredients", "image"]
+
+        montarTabelaGenerica(cafes, "cafesDiv", headers, props)
+      } catch(err) {
+        document.getElementById("cafesDiv").innerHTML = "Erro ao carregar cafés ☹️"
+      }
+    }
+
+    document.getElementById("botaoCarregar")
+            .addEventListener("click", carregarCafes)
+  </script>
+</body>   
+</html>

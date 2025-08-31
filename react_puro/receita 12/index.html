@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Receita 12</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      table {
+        border-collapse: collapse;
+        margin-top: 15px;
+        width: 80%;
+      }
+      th,
+      td {
+        border: 1px solid #333;
+        padding: 8px 12px;
+        text-align: center;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      caption {
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      button {
+        padding: 8px 15px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <main id="app"></main>
+
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+      const conteudo = [
+        { id: 1, nome: "Cachaça 51", origem: "Brasil", alcool: "39%" },
+        { id: 2, nome: "Ypióca", origem: "Brasil", alcool: "39%" },
+        { id: 3, nome: "Velho Barreiro", origem: "Brasil", alcool: "39%" },
+        { id: 4, nome: "Pitú", origem: "Brasil", alcool: "39%" },
+      ];
+      const cabecalhos = Object.keys(conteudo[0]);
+      console.log(conteudo.map((object) => object["id"]));
+
+      class Header extends React.Component {
+        render() {
+          return <h1>Bem-vindo ao catálogo de bebidas</h1>;
+        }
+      }
+
+      class TabelaBebidas extends React.Component {
+        render() {
+          return (
+            <div>
+              <h1>{this.props.titulo}</h1>
+              <table>
+                <thead>
+                  <tr>
+                    {this.props.cabecalhos.map((cab, index) => (
+                      <th key={index}>{cab.toUpperCase()}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.props.conteudo.map((object) => (
+                    <tr key={object["id"]}>
+                      {this.props.cabecalhos.map((cab) => (
+                        <td key={cab} >{object[cab]}</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          );
+        }
+      }
+
+      const App = () => {
+        const [mostrarTabela, setMostrarTabela] = React.useState(false);
+
+        return (
+          <div>
+            <Header />
+            <button onClick={() => setMostrarTabela(!mostrarTabela)}>
+              {mostrarTabela ? "Esconder Tabela" : "Mostrar Tabela"}
+            </button>
+            {mostrarTabela && (
+              <TabelaBebidas
+                titulo="Tabela de Cana"
+                cabecalhos={cabecalhos}
+                conteudo={conteudo}
+              />
+            )}
+          </div>
+        );
+      };
+
+      ReactDOM.render(<App />, document.getElementById("app"));
+    </script>
+  </body>
+</html>

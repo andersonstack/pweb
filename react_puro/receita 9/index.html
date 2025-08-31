@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Receita 09</title>
+  </head>
+  <body>
+    <main id="app"></main>
+
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+
+    <script>
+      const tabela = React.createElement(
+        "table",
+        { border: "1", cellPadding: "10" },
+        React.createElement("thead", null,
+          React.createElement("tr", null, [
+            React.createElement("th", { key: "col1" }, "Coluna 1"),
+            React.createElement("th", { key: "col2" }, "Coluna 2")
+          ])
+        ),
+        React.createElement("tbody", null, [
+          React.createElement("tr", { key: "linha1" }, [
+            React.createElement("td", { key: "l1c1" }, "Linha 1 - Coluna 1"),
+            React.createElement("td", { key: "l1c2" }, "Linha 1 - Coluna 2")
+          ]),
+          React.createElement("tr", { key: "linha2" }, [
+            React.createElement("td", { key: "l2c1" }, "Linha 2 - Coluna 1"),
+            React.createElement("td", { key: "l2c2" }, "Linha 2 - Coluna 2")
+          ])
+        ])
+      );
+
+      ReactDOM.render(tabela, document.getElementById("app"));
+    </script>
+  </body>
+</html>

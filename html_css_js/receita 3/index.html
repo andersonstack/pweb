@@ -1,43 +1,43 @@
-<!DOCTYPE html>
-<html>   
-   <head>
-      <meta charset="UTF-8">      
-      <link rel="stylesheet" href="estilo.css">
-   </head>
-   
-   <body>
-      <!-- div do botão -->
-      <div id="divBotao">
-         <button id="botaoCarregar">Mostrar/Esconder cerveja</button>
-      </div>
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="estilo.css" />
+  </head>
 
-      <!-- div para exibir o nome -->
-      <div id="divCerveja"></div>
-   </body>   
+  <body>
+    <!-- div do botão -->
+    <div id="divBotao">
+      <button id="botaoCarregar">Mostrar/Esconder cerveja</button>
+    </div>
 
-   <script>
-      let botao = document.getElementById("botaoCarregar");
-      let divCerveja = document.getElementById("divCerveja");
-      let visivel = false; // controla estado
+    <!-- div para exibir o nome -->
+    <div id="divCerveja"></div>
+  </body>
 
-      function toggleCerveja() {
-         if (!visivel) {
-            // aparece (fade in)
-            divCerveja.style.opacity = 0;
-            divCerveja.innerHTML = "<h1>Guinness</h1>";
-            divCerveja.classList.add("show");
-            setTimeout(() => divCerveja.style.opacity = 1, 50);
-         } else {
-            // desaparece (fade out)
-            divCerveja.style.opacity = 0;
-            setTimeout(() => {
-               divCerveja.innerHTML = "";
-               divCerveja.classList.remove("show");
-            }, 500); // tempo deve casar com o transition do CSS
-         }
-         visivel = !visivel;
+  <script>
+    let botao = document.getElementById("botaoCarregar");
+    let divCerveja = document.getElementById("divCerveja");
+    let visivel = false; // controla estado
+
+    function toggleCerveja() {
+      if (!visivel) {
+        // aparece (fade in)
+        divCerveja.style.opacity = 0;
+        divCerveja.innerHTML = "<h1>Guinness</h1>";
+        divCerveja.classList.add("show");
+        setTimeout(() => (divCerveja.style.opacity = 1), 50);
+      } else {
+        // desaparece (fade out)
+        divCerveja.style.opacity = 0;
+        setTimeout(() => {
+          divCerveja.innerHTML = "";
+          divCerveja.classList.remove("show");
+        }, 500); // tempo deve casar com o transition do CSS
       }
+      visivel = !visivel;
+    }
 
-      botao.addEventListener("click", toggleCerveja);
-   </script>
+    botao.addEventListener("click", toggleCerveja);
+  </script>
 </html>

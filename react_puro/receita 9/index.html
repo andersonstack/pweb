@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
@@ -21,22 +21,24 @@
       const tabela = React.createElement(
         "table",
         { border: "1", cellPadding: "10" },
-        React.createElement("thead", null,
+        React.createElement(
+          "thead",
+          null,
           React.createElement("tr", null, [
             React.createElement("th", { key: "col1" }, "Coluna 1"),
-            React.createElement("th", { key: "col2" }, "Coluna 2")
-          ])
+            React.createElement("th", { key: "col2" }, "Coluna 2"),
+          ]),
         ),
         React.createElement("tbody", null, [
           React.createElement("tr", { key: "linha1" }, [
             React.createElement("td", { key: "l1c1" }, "Linha 1 - Coluna 1"),
-            React.createElement("td", { key: "l1c2" }, "Linha 1 - Coluna 2")
+            React.createElement("td", { key: "l1c2" }, "Linha 1 - Coluna 2"),
           ]),
           React.createElement("tr", { key: "linha2" }, [
             React.createElement("td", { key: "l2c1" }, "Linha 2 - Coluna 1"),
-            React.createElement("td", { key: "l2c2" }, "Linha 2 - Coluna 2")
-          ])
-        ])
+            React.createElement("td", { key: "l2c2" }, "Linha 2 - Coluna 2"),
+          ]),
+        ]),
       );
 
       ReactDOM.render(tabela, document.getElementById("app"));

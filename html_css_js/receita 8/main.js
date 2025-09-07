@@ -1,32 +1,31 @@
 async function buscarDados(url) {
   try {
-    const res = await fetch(url)
+    const res = await fetch(url);
     if (!res.ok) {
-      throw new Error("Erro na requisição: " + res.status)
+      throw new Error("Erro na requisição: " + res.status);
     }
-    return await res.json()
+    return await res.json();
   } catch (err) {
-    console.error("Erro ao buscar dados:", err)
-    return null
+    console.error("Erro ao buscar dados:", err);
+    return null;
   }
 }
 
 async function processarCafes() {
-  const url = "https://api.sampleapis.com/coffee/hot"
-  const cafes = await buscarDados(url)
+  const url = "https://api.sampleapis.com/coffee/hot";
+  const cafes = await buscarDados(url);
 
   if (!cafes) {
-    document.getElementById("cafesDiv").innerHTML = "Erro ao carregar cafés ☹️"
-    return
+    document.getElementById("cafesDiv").innerHTML = "Erro ao carregar cafés ☹️";
+    return;
   }
 
-  const headers = ["Nome", "Descrição", "Ingredientes", "Imagem"]
-  const props = ["title", "description", "ingredients", "image"]
+  const headers = ["Nome", "Descrição", "Ingredientes", "Imagem"];
+  const props = ["title", "description", "ingredients", "image"];
 
-  renderizarTabela(cafes, "cafesDiv", headers, props)
+  renderizarTabela(cafes, "cafesDiv", headers, props);
 }
 
-document.getElementById("botaoCarregar")
-        .addEventListener("click", async () => {
-          await processarCafes()
-        })
+document.getElementById("botaoCarregar").addEventListener("click", async () => {
+  await processarCafes();
+});

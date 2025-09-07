@@ -1,9 +1,9 @@
 #divCerveja {
-   transition: opacity 0.5s ease;
-   opacity: 0;
-   min-height: 50px; /* para não sumir o espaço totalmente */
+  transition: opacity 0.5s ease;
+  opacity: 0;
+  min-height: 50px; /* para não sumir o espaço totalmente */
 }
 
 #divCerveja.show {
-   opacity: 1;
+  opacity: 1;
 }

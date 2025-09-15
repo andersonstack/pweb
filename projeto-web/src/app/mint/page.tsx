@@ -1,7 +1,9 @@
+import { Title } from "@/components/title";
+
 export default function Mint() {
   return (
     <div>
-      <h1>Página 2</h1>
+      <Title title="Esse é o título da minha segunda página"/>
     </div>
   );
 }

@@ -1,3 +1,7 @@
-export function Title(){
-    return (<h1>Menu Principal</h1>)
+interface TitleProps {
+    title: string
+}
+
+export function Title({...props}: TitleProps){
+    return (<h1>{props.title}</h1>)
 }

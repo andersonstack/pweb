@@ -1,4 +1,4 @@
-import Link from "next/link"
+// import { InputComponent } from "@/components/input"
 
 export default function HomeLayout({
     children,
@@ -6,11 +6,13 @@ export default function HomeLayout({
     // console.log('Montando layout da home')
     return (
         <div className="home-container">
-            <nav>
-                <p>PWEB</p>
-                <Link href={"./mint"}>Ir para mint</Link>
-            </nav>
-            <main>{children}</main>
+            {/* <nav>
+                <InputComponent />
+            </nav> */}
+            <main>
+                <h1 className="py-4 text-3xl font-bold mb-6 text-center">Filmes</h1>
+                {children}
+            </main>
         </div>
     )
 }

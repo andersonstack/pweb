@@ -1,6 +1,7 @@
 // Configurações
 'use client'
 import { useEffect, useState } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 
 // Componentes
 import { Service } from "../service/service";
@@ -11,13 +12,24 @@ import { ButtonComponent } from "@/components/button";
 import type { Movie } from "../interfaces/interfaces";
 
 export default function Home() {
+  // Configurações de url
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  // Parâmetros da url
+  const titleSearchKey = searchParams.get("titleSearchKey") || "bagdad";
+  const pageFromUrl = parseInt(searchParams.get("page") || "1", 10);
+
   const [dataSearch, setDataSearch] = useState<Movie[]>([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(pageFromUrl);
   const [loading, setLoading] = useState(false);
 
   const fetchMovies = async (pageNumber: number) => {
     setLoading(true);
-    const data = await Service({searchParams: {page: pageNumber.toString()}})
+    const data = await Service({searchParams:
+      {page: pageNumber.toString(),
+        titleSearchKey: titleSearchKey
+    }})
     setDataSearch(data?.Search || []);
     setLoading(false);
   }
@@ -26,6 +38,12 @@ export default function Home() {
     fetchMovies(page);
   }, [page])
 
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("page", page.toString());
+    params.set("titleSearchKey", titleSearchKey)
+    router.replace(`?${params.toString()}`)
+  }, [page])
 
   if (loading) {
     return (

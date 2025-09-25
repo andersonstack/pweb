@@ -33,5 +33,6 @@ Projetos e exemplos utilizando a biblioteca React para desenvolvimento de interf
 - [Receita 16](https://github.com/anderson-gpc/pweb/tree/nextjs/receita16)  
 - [Receita 17](https://github.com/anderson-gpc/pweb/tree/nextjs/receita17)
 - [Receita 18](https://github.com/anderson-gpc/pweb/tree/nextjs/receita18)
+- [Receita 19](https://github.com/anderson-gpc/pweb/tree/nextjs/receita19)
 
 ---

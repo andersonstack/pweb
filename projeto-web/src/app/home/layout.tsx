@@ -6,11 +6,10 @@ export default function HomeLayout({
     // console.log('Montando layout da home')
     return (
         <div className="home-container">
-            {/* <nav>
-                <InputComponent />
-            </nav> */}
-            <main>
+            <nav>
                 <h1 className="py-4 text-3xl font-bold mb-6 text-center">Filmes</h1>
+            </nav>
+            <main>
                 {children}
             </main>
         </div>

@@ -1,82 +1,17 @@
-// Configurações
-'use client'
-import { useEffect, useState } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+"use client"
+import { useEffect } from "react"
+import { SearchProvider } from "../middleware/SearchContext"
+import { MovieForm } from "@/components/movieSearch"
+import HomeView from "./HomeView"
 
-// Componentes
-import { Service } from "../service/service";
-import { Card } from "@/components/card";
-import { ButtonComponent } from "@/components/button";
-
-// Serviços
-import type { Movie } from "../interfaces/interfaces";
-
-export default function Home() {
-  // Configurações de url
-  const searchParams = useSearchParams();
-  const router = useRouter();
-
-  // Parâmetros da url
-  const titleSearchKey = searchParams.get("titleSearchKey") || "bagdad";
-  const pageFromUrl = parseInt(searchParams.get("page") || "1", 10);
-
-  const [dataSearch, setDataSearch] = useState<Movie[]>([]);
-  const [page, setPage] = useState(pageFromUrl);
-  const [loading, setLoading] = useState(false);
-
-  const fetchMovies = async (pageNumber: number) => {
-    setLoading(true);
-    const data = await Service({searchParams:
-      {page: pageNumber.toString(),
-        titleSearchKey: titleSearchKey
-    }})
-    setDataSearch(data?.Search || []);
-    setLoading(false);
-  }
-
+export default function Home(){
   useEffect(() => {
-    fetchMovies(page);
-  }, [page])
-
-  useEffect(() => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set("page", page.toString());
-    params.set("titleSearchKey", titleSearchKey)
-    router.replace(`?${params.toString()}`)
-  }, [page])
-
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen text-gray-600">
-        Carregando...
-      </div>
-    );
-  }
-
-  if (dataSearch.length === 0) {
-    return (
-      <div className="flex justify-center items-center h-screen text-gray-600">
-        Nenhum filme encontrado.
-      </div>
-    );
-  }
-
+    console.log("Reset Home - (mount)");
+  }, []);
   return (
-    <div className="container mx-auto px-4 py-8">
-      <ButtonComponent
-        disabled={page === 1}
-        page={page}
-        setPage={() => setPage(page - 1)}
-        name="Página anterior"/>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {dataSearch.map((movie: Movie) => (
-          <Card key={movie.imdbID} movie={movie} />
-        ))}
-      </div>
-      <ButtonComponent
-        page={page}
-        setPage={() => setPage(page + 1)}
-        name="Próxima página"/>
-    </div>
-  );
+    <SearchProvider>
+      <MovieForm />
+      <HomeView />
+    </SearchProvider>
+  )
 }

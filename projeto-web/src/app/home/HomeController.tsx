@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { HomeService } from "./HomeService";
+import { useSearch } from "../context/SearchContext";
 import type { Movie } from "../interfaces/interfaces";
 
-export function HomeController(search: string) {
+export function HomeController(query: string) {
+    const {setDisabled} = useSearch();
     const [dataSearch, setDataSearch] = useState<Movie[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const searchParams = useSearchParams();
@@ -13,17 +15,20 @@ export function HomeController(search: string) {
 
     useEffect(() => {
         setLoading(true);
-        HomeService(page, search)
+        HomeService(page, query)
             .then((movies) => setDataSearch(movies))
-            .finally(() => setLoading(false));
-    }, [search, page]);
+            .finally(() => {
+                setLoading(false)
+                setDisabled(false);
+            });
+    }, [query, page]);
 
     useEffect(() => {
         const params = new URLSearchParams(searchParams.toString());
         params.set("page", page.toString());
-        params.set("titleSearchKey", search);
+        params.set("titleSearchKey", query);
         router.replace(`?${params.toString()}`);
-    }, [page, search])
+    }, [page, query])
 
     return {page, setPage, dataSearch, loading};
 }

@@ -1,48 +1,13 @@
 "use client"
-import { useEffect, useState } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
-import { Service } from "../service/service";
-import { useSearch } from "../middleware/SearchContext";
+import { useSearch } from "../context/SearchContext";
+import { HomeController } from "./HomeController";
 import { Card } from "@/components/card";
 import { ButtonComponent } from "@/components/button";
 import type { Movie } from "../interfaces/interfaces";
 
 export default function HomeView() {
-    useEffect(() => {
-        console.log("Reset HOMEVIEW - (mount)");
-    }, []);
-
-    const [dataSearch, setDataSearch] = useState<Movie[]>([]);
-    const [loading, setLoading] = useState<boolean>(false);
-
     const { search } = useSearch();
-
-    const searchParams = useSearchParams();
-    const router = useRouter();
-    const pageFromUrl = parseInt(searchParams.get("page") || "1", 10);
-    const [page, setPage] = useState(pageFromUrl);
-
-    const fetchMovies = async (pageNumber: number, query: string) => {
-        setLoading(true);
-        const data = await Service({
-            searchParams: {page: pageNumber.toString(), titleSearchKey: query}
-        });
-        setDataSearch(data?.Search || []);
-        setLoading(false);
-    }
-
-    // Para Search
-    useEffect(() => {
-        fetchMovies(page, search);
-    }, [search, page]);
-
-    // Param's Parâmetros da URL
-    useEffect(() => {
-        const params = new URLSearchParams(searchParams.toString());
-        params.set("page", page.toString());
-        params.set("titleSearchKey", search);
-        router.replace(`?${params.toString()}`);
-    }, [page, search])
+    const {page, setPage, dataSearch, loading} = HomeController(search);
 
     if (loading) {
     return <div className="flex justify-center items-center h-screen">Carregando...</div>;

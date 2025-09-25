@@ -1,14 +1,10 @@
 "use client";
 
 import { FormEvent, useEffect } from "react";
-import { useSearch } from "@/app/middleware/SearchContext";
+import { useSearch } from "@/app/context/SearchContext";
 
-export function MovieForm() {
+export function Search() {
   const { setSearch } = useSearch();
-
-  useEffect(() => {
-    console.log("Reset FORM (mount)");
-  }, []);
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();

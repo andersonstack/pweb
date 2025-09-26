@@ -6,13 +6,13 @@ import type { Movie } from "../interfaces/interfaces";
 
 export default function HomeView() {
     const { search } = useSearch();
-    const {page, setPage, dataSearch, loading} = HomeController(search);
+    const {page, setPage, movies, loading} = HomeController(search);
 
     if (loading) {
     return <div className="flex justify-center items-center h-screen">Carregando...</div>;
     }
 
-    if (dataSearch.length === 0) {
+    if (movies.length === 0) {
         return <div className="flex justify-center items-center h-screen">Nenhum filme encontrado.</div>;
     }
 
@@ -36,7 +36,7 @@ export default function HomeView() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {dataSearch.map((movie: Movie) => (
+            {movies.map((movie: Movie) => (
                 <div key={movie.imdbID} className="bg-[#fff8f0] border rounded-xl shadow-md">
                 <Card movie={movie} />
                 </div>

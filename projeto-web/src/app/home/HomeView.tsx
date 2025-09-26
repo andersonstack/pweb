@@ -1,7 +1,7 @@
 import { useSearch } from "../context/SearchContext";
 import { HomeController } from "./HomeController";
-import { Card } from "@/components/card";
-import { ButtonComponent } from "@/components/button";
+import { Card } from "@/app/components/card";
+import { ButtonComponent } from "@/app/components/button";
 import type { Movie } from "../interfaces/interfaces";
 
 export default function HomeView() {

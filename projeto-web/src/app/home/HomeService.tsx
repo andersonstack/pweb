@@ -1,3 +1,5 @@
+"use service" // Garante execução somente no servidor
+
 import type { Movie } from "../interfaces/interfaces";
 
 export async function HomeService(

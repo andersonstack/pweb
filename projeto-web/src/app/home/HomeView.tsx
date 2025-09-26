@@ -1,4 +1,3 @@
-"use client"
 import { useSearch } from "../context/SearchContext";
 import { HomeController } from "./HomeController";
 import { Card } from "@/components/card";

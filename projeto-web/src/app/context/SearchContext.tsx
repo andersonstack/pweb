@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, ReactNode } from "react";
-import { Movie } from "../interfaces/interfaces";
+import { Movie } from "../types/movie";
 
 interface SearchContextType {
     search: string;

@@ -1,5 +1,5 @@
 "use server" // Garante execução somente no servidor
-import type { Movie } from "../interfaces/interfaces";
+import type { Movie } from "../types/movie";
 
 export async function HomeService(
   page: number,

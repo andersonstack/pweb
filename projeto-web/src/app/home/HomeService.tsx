@@ -1,13 +1,13 @@
-"use service" // Garante execução somente no servidor
-
-import type { Movie } from "../interfaces/interfaces";
+"use server" // Garante execução somente no servidor
+import type { Movie } from "../types/movie";
 
 export async function HomeService(
   page: number,
-  query: string
+  searchKey: string
 ): Promise<Movie[]> {
+  "use server";
   const res = await fetch(
-    `/api?titleSearchKey=${encodeURIComponent(query)}&page=${page}`
+    `http://localhost:3000/api?titleSearchKey=${encodeURIComponent(searchKey)}&page=${page}`
   );
   const data = await res.json();
   return data?.Search || [];

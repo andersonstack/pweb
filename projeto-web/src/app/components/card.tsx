@@ -1,4 +1,4 @@
-import { Movie } from "@/app/interfaces/interfaces"
+import { Movie } from "@/app/types/movie"
 import { Title } from "./title";
 
 interface CardProps {

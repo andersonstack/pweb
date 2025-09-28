@@ -3,13 +3,14 @@ import { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useSearch } from "../context/SearchContext";
 
-export function HomeController(searchForm: string) {
+export function useHomeController(searchForm: string) {
   const [loading, setLoading] = useState<boolean>(false);
   const { setMovies, movies } = useSearch();
   const searchParams = useSearchParams();
   const router = useRouter();
   const pageFromUrl = parseInt(searchParams.get("page") || "1", 10);
   const [page, setPage] = useState(pageFromUrl);
+  console.log("Mounter HomeController");
 
   useEffect(() => {
     setLoading(true);
@@ -23,8 +24,8 @@ export function HomeController(searchForm: string) {
       )
         .then((res) => res.json())
         .finally(() => {
-            setLoading(false);
-            setMovies(movies);
+          setLoading(false);
+          setMovies(movies);
         });
     }
     fetchMovies();
@@ -32,10 +33,15 @@ export function HomeController(searchForm: string) {
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
-    params.set("page", page.toString());
-    params.set("titleSearchKey", searchForm);
-    router.replace(`?${params.toString()}`);
-  }, [page, searchForm]);
+    const currentPage = params.get("page");
+    const currentSearch = params.get("titleSearchKey");
+
+    if (currentPage !== page.toString() || currentSearch !== searchForm) {
+      params.set("page", page.toString());
+      params.set("titleSearchKey", searchForm);
+      router.replace(`?${params.toString()}`);
+    }
+  }, [page, searchForm, searchParams, router]);
 
   return { page, setPage, movies, loading };
 }

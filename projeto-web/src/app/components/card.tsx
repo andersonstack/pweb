@@ -1,13 +1,15 @@
 import { Movie } from "@/app/types/movie"
 import { Title } from "./title";
+import Link from "next/link";
 
 interface CardProps {
     movie: Movie;
+    href: string;
 }
 
-export function Card({movie}: CardProps) {
+export function Card({movie, href}: CardProps) {
     return (
-        <div
+        <Link href={href}
             key={movie.imdbID}
             className="bg-white shadow-lg rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300"
         >
@@ -23,6 +25,6 @@ export function Card({movie}: CardProps) {
                 <p>{movie.Year}</p>
               </div>
             </div>
-        </div>
+        </Link>
     )
 }

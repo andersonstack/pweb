@@ -1,13 +1,13 @@
 "use client"
 import { useSearch } from "../context/SearchContext";
-import { HomeController } from "./HomeController";
+import { useHomeController } from "./HomeController";
 import { Card } from "@/app/components/card";
 import { ButtonComponent } from "@/app/components/button";
 import type { Movie } from "../types/movie";
 
 export default function HomeView() {
     const { search } = useSearch();
-    const {page, setPage, movies, loading} = HomeController(search);
+    const {page, setPage, movies, loading} = useHomeController(search);
 
     if (loading) {
     return <div className="flex justify-center items-center h-screen">Carregando...</div>;
@@ -39,7 +39,7 @@ export default function HomeView() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {movies.map((movie: Movie) => (
                 <div key={movie.imdbID} className="bg-[#fff8f0] border rounded-xl shadow-md">
-                <Card movie={movie} />
+                <Card href={`/movie/${movie.imdbID}`} movie={movie} />
                 </div>
             ))}
             </div>

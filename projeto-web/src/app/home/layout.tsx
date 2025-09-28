@@ -1,9 +1,6 @@
-// import { InputComponent } from "@/components/input"
-
 export default function HomeLayout({
     children,
 }: {children: React.ReactNode}) {
-    // console.log('Montando layout da home')
     return (
         <div className="home-container">
             <nav>

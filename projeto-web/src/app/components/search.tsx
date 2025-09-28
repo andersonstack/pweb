@@ -1,13 +1,14 @@
-import { searchAction } from "../actions/searchActions";
+"use client";
+import { searchMovies } from "../actions/ServerActions";
 import { useSearch } from "../context/SearchContext";
-import { useTransition } from "react";
 import { ButtonForm } from "./buttonForm";
 
 export function Search() {
-  const {setMovies} = useSearch();
+  const { setMovies } = useSearch();
 
   async function handleSearch(formData: FormData) {
-    const movies = await searchAction(formData);
+    const searchKey = formData.get("titleSearchKey") as string;
+    const movies = await searchMovies(searchKey); // chama a Server Action
     setMovies(movies);
   }
 

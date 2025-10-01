@@ -1,4 +1,4 @@
-interface ButtonProps {
+interface ButtonComponentProps {
     page: number;
     setPage: (page: number) => void;
     name: string;
@@ -6,7 +6,7 @@ interface ButtonProps {
     className: string;
 }
 
-export function ButtonComponent({page, setPage, name, disabled, className}: ButtonProps) {
+export function ButtonComponent({page, setPage, name, disabled, className}: ButtonComponentProps) {
     return (
     <button
         disabled={disabled}

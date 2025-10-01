@@ -1,9 +1,9 @@
 "use client"
-import { useSearch } from "../context/SearchContext";
+import { useSearch } from "@/modules/search/context/SearchContext";
 import { useHomeController } from "./HomeController";
-import { Card } from "@/app/components/card";
-import { ButtonComponent } from "@/app/components/button";
-import type { Movie } from "../types/movie";
+import { CardComponent } from "@/shared/ui/card-component";
+import { ButtonComponent } from "@/shared/ui/button-component";
+import type { MovieType } from "../../shared/types/movie-type";
 
 export default function HomeView() {
     const { search } = useSearch();
@@ -37,9 +37,9 @@ export default function HomeView() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {movies.map((movie: Movie) => (
+            {movies.map((movie: MovieType) => (
                 <div key={movie.imdbID} className="bg-[#fff8f0] border rounded-xl shadow-md">
-                <Card href={`/movie/${movie.imdbID}`} movie={movie} />
+                <CardComponent href={`/movie/${movie.imdbID}`} movie={movie} />
                 </div>
             ))}
             </div>

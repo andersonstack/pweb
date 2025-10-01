@@ -1,16 +1,16 @@
-import type { Movie } from "@/app/types/movie";
+import type { MovieType } from "@/shared/types/movie-type";
 import Link from "next/link";
 
 export async function generateStaticParams() {
   const res = await fetch("http://www.omdbapi.com/?apikey=b31c36d8&s=bagdad");
   const data = await res.json();
 
-  return data.Search.map((movie: Movie) => ({
+  return data.Search.map((movie: MovieType) => ({
     id: movie.imdbID,
   }));
 }
 
-async function getMovie(id: string): Promise<Movie> {
+async function getMovie(id: string): Promise<MovieType> {
   const res = await fetch(`http://www.omdbapi.com/?apikey=b31c36d8&i=${id}`);
   return res.json();
 }

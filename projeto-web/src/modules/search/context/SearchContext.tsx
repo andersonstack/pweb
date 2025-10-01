@@ -1,13 +1,13 @@
 "use client";
 
 import { createContext, useContext, useState, ReactNode } from "react";
-import { Movie } from "../types/movie";
+import { MovieType } from "@/shared/types/movie-type";
 
 interface SearchContextType {
   search: string;
   setSearch: (value: string) => void;
-  movies: Movie[];
-  setMovies: (movies: Movie[]) => void;
+  movies: MovieType[];
+  setMovies: (movies: MovieType[]) => void;
 }
 
 const SearchContext = createContext<SearchContextType | undefined>(undefined);
@@ -17,10 +17,10 @@ export function SearchProvider({
   initialMovies = [],
 }: {
   children: ReactNode;
-  initialMovies?: Movie[];
+  initialMovies?: MovieType[];
 }) {
   const [search, setSearch] = useState("bagdad");
-  const [movies, setMovies] = useState<Movie[]>(initialMovies);
+  const [movies, setMovies] = useState<MovieType[]>(initialMovies);
 
   return (
     <SearchContext.Provider value={{ search, setSearch, movies, setMovies }}>

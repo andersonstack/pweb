@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { useSearch } from "../context/SearchContext";
+import { useSearch } from "@/modules/search/context/SearchContext";
 
 export function useHomeController(searchForm: string) {
   const [loading, setLoading] = useState<boolean>(false);

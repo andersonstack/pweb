@@ -1,5 +1,5 @@
 "use client";
-import { searchMovies } from "../actions/ServerActions";
+import { searchMovies } from "../../../app/actions/ServerActions";
 import { useSearch } from "../context/SearchContext";
 import { ButtonForm } from "./buttonForm";
 

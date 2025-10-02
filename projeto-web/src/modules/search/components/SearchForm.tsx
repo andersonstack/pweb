@@ -1,14 +1,15 @@
 "use client";
-import { searchMovies } from "../../../app/actions/ServerActions";
+import { MovieType } from "@/shared/types/movie-type";
+import { searchMovies } from "../actions/searchMovies";
 import { useSearch } from "../context/SearchContext";
-import { ButtonForm } from "./buttonForm";
+import { ButtonForm } from "./ButtonForm";
 
 export function Search() {
   const { setMovies } = useSearch();
 
   async function handleSearch(formData: FormData) {
     const searchKey = formData.get("titleSearchKey") as string;
-    const movies = await searchMovies(searchKey); // chama a Server Action
+    const movies: MovieType[] = await searchMovies(searchKey);
     setMovies(movies);
   }
 

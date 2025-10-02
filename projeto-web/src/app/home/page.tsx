@@ -1,11 +1,11 @@
 import { SearchProvider } from "@/modules/search/context/SearchContext"
-import { Search } from "@/modules/search/components/search"
+import { Search } from "@/modules/search/components/SearchForm"
 import HomeView from "./HomeView"
 import { MovieType } from "../../shared/types/movie-type"
-import { HomeService } from "./HomeService"
+import { getMoviesInitialsForHome } from "./homeService"
 
 export default async function Home(){
-  const movies: MovieType[] = await HomeService();
+  const movies: MovieType[] = await getMoviesInitialsForHome();
   return (
     <SearchProvider initialMovies={movies}>
       <Search />

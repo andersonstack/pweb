@@ -1,5 +1,5 @@
 import { MovieType } from "@/shared/types/movie-type"
-import { TitleComponent } from "./title-component";
+import { TitleComponent } from "./Title";
 import Link from "next/link";
 
 interface CardComponentProps {

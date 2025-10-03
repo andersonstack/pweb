@@ -22,11 +22,10 @@ export function useHomeController() {
         )}&page=${page}`,
         { cache: "no-store" }
       )
-        .then((res) => res.json())
-        .finally(() => {
-          setLoading(false);
-          setMovies(movies);
-        });
+        .then((res) => {
+          res.json().then((res) => setMovies(res.Search));
+        })
+        .finally(() => setLoading(false));
     }
     fetchMovies();
   }, [search, page]);

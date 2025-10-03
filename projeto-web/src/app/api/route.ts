@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getOmdbData } from "../lib/omdb";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -11,7 +12,7 @@ export async function GET(request: Request) {
       { error: "Parâmetros insuficientes" },
       { status: 400 }
     );
-  };
+  }
 
   let url = `http://www.omdbapi.com/?apikey=b31c36d8`;
 
@@ -19,11 +20,9 @@ export async function GET(request: Request) {
   if (titleSearchKey) url += `&s=${titleSearchKey}&page=${page}`;
 
   try {
-    const res = await fetch(url);
-    const data = await res.json();
-
+    const data = await getOmdbData(url);
     return NextResponse.json(data);
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: "Erro ao buscar dados" },
       { status: 500 }

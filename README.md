@@ -38,3 +38,11 @@ Projetos e exemplos utilizando a biblioteca React para desenvolvimento de interf
 - [Receita 21](https://github.com/anderson-gpc/pweb/tree/nextjs/receita21)
 
 ---
+Alimentando o banco de dados para as próximas receitas:
+```bash
+cd next-mysql
+npm install
+npx prisma migrate dev
+npm run seed
+```
+---

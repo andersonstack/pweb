@@ -1,5 +1,5 @@
 import express from "express";
-import MoviesRoutes from "./movies/MoviesRoutes";
+import MoviesRoutes from "./modules/movies/MoviesRoutes";
 
 const app = express();
 app.use(express.json());

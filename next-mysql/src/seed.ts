@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { moviesData } from "./movies/MovieValidate";
+import { moviesData } from "./modules/movies/MovieValidate";
 
 const prisma = new PrismaClient();
 

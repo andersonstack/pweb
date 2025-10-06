@@ -1,4 +1,4 @@
 export type QueryType = {
     page?: number;
-    title?: string;
+    titleSearchKey?: string;
 }

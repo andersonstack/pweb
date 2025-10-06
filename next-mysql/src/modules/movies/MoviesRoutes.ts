@@ -13,4 +13,13 @@ MoviesRoutes.get("/", async (req, res) => {
   }
 });
 
+MoviesRoutes.get("/:title", async (req, res) => {
+  try {
+    const movie = await moviesController.findyByName(req, res);
+    res.json(movie);
+  } catch (error: any) {
+    res.status(500).json({error: error.message});
+  }
+})
+
 export default MoviesRoutes;

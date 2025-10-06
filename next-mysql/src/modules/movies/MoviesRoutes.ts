@@ -1,12 +1,12 @@
 import { Router } from "express";
-import MoviesRepository from "./MoviesRepository";
+import MoviesController from "./MovieController";
 
-const moviesRepository = new MoviesRepository();
+const moviesController = new MoviesController();
 const MoviesRoutes = Router();
 
 MoviesRoutes.get("/", async (req, res) => {
   try {
-    const movies = await moviesRepository.getMovies();
+    const movies = await moviesController.getMovies(req, res);
     res.json(movies);
   } catch (error: any) {
     res.status(500).json({ error: error.message });

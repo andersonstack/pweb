@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 // Hooks
-import { useSearchMovies } from "./hooks/useSearchMovies";
+import {useSearchMovies} from "./useSearchMovies";
 // import { useSyncUrl } from "./hooks/use-SyncUrl";
 
 export function useHomeController() {

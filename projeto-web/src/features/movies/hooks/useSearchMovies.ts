@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useSearch } from "@/modules/search/context/SearchContext";
+import { useSearch } from "@/features/search/context/SearchContext";
 
 export function useSearchMovies(page: number) {
   const [loading, setLoading] = useState<boolean>(false);

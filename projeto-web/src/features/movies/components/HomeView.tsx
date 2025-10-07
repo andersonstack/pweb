@@ -1,8 +1,8 @@
 "use client"
-import { useHomeController } from "./useHomeController";
+import { useHomeController } from "../hooks/useHomeController";
 import { CardComponent } from "@/shared/ui/Card";
 import { ButtonComponent } from "@/shared/ui/Button";
-import type { MovieType } from "../../shared/types/movie-type";
+import type { MovieType } from "../../../shared/types/movie-type";
 
 export default function HomeView() {
     const {page, setPage, movies, loading} = useHomeController();

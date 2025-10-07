@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getOmdbData } from "../lib/omdb";
+import { getOmdbData } from "../../../lib/omdb";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);

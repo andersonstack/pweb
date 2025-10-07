@@ -1,5 +1,5 @@
 'use client';
-import { useSearch } from '@/modules/search/context/SearchContext';
+import { useSearch } from '@/features/search/context/SearchContext';
 import { useSearchParams } from 'next/navigation';
 
 interface SearchParamsType {

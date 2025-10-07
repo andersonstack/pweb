@@ -1,12 +1,12 @@
 "use client";
 import { MovieType } from "@/shared/types/movie-type";
 import { searchMovies } from "../actions/searchMovies";
-import { useSearch } from "../context/SearchContext";
+import { useApp } from "@/shared/context/AppContext";
 import { ButtonForm } from "./ButtonForm";
 import { memo } from "react";
 
 export const Search = memo(function Search() {
-  const { setMovies } = useSearch();
+  const { setMovies } = useApp();
   console.log("Montando o Search");
 
   async function handleSearch(formData: FormData) {

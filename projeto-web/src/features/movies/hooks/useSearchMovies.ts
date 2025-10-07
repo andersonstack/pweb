@@ -1,10 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useSearch } from "@/features/search/context/SearchContext";
+import { useApp } from "@/shared/context/AppContext";
 
-export function useSearchMovies(page: number) {
+export function useSearchMovies() {
   const [loading, setLoading] = useState<boolean>(false);
-  const { setMovies, movies, search } = useSearch();
+  const { setMovies, movies, search, page } = useApp();
 
   useEffect(() => {
     async function fetchMovies() {

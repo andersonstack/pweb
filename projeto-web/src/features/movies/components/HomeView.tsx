@@ -1,11 +1,13 @@
 "use client"
-import { useHomeController } from "../hooks/useHomeController";
+import { useSearchMovies } from "../hooks/useSearchMovies";
+import { useApp } from "@/shared/context/AppContext";
 import { CardComponent } from "@/shared/ui/Card";
 import { ButtonComponent } from "@/shared/ui/Button";
 import type { MovieType } from "../../../shared/types/movie-type";
 
 export default function HomeView() {
-    const {page, setPage, movies, loading} = useHomeController();
+    const { movies, loading } = useSearchMovies();
+    const { page, setPage } = useApp();
 
     if (loading) {
     return <div className="flex justify-center items-center h-screen">Carregando...</div>;

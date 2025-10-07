@@ -3,16 +3,18 @@
 import { createContext, useContext, useState, ReactNode, useMemo } from "react";
 import { MovieType } from "@/shared/types/movie-type";
 
-interface SearchContextType {
+interface AppContextType {
   search: string;
   setSearch: (value: string) => void;
   movies: MovieType[];
   setMovies: (movies: MovieType[]) => void;
+  page: number;
+  setPage: (page: number) => void;
 }
 
-const SearchContext = createContext<SearchContextType | undefined>(undefined);
+const AppContext = createContext<AppContextType | undefined>(undefined);
 
-export function SearchProvider({
+export function AppProvider({
   children,
   initialMovies = [],
 }: {
@@ -21,21 +23,22 @@ export function SearchProvider({
 }) {
   const [search, setSearch] = useState("bagdad");
   const [movies, setMovies] = useState<MovieType[]>(initialMovies);
+  const [page, setPage] = useState(1);
 
   const contextValue = useMemo(
-    () => ({ search, setSearch, movies, setMovies }),
-    [search, movies]
+    () => ({ search, setSearch, movies, setMovies, page, setPage }),
+    [search, movies, page]
   );
 
   return (
-    <SearchContext.Provider value={contextValue}>
+    <AppContext.Provider value={contextValue}>
       {children}
-    </SearchContext.Provider>
+    </AppContext.Provider>
   );
 }
 
-export function useSearch() {
-  const ctx = useContext(SearchContext);
-  if (!ctx) throw new Error("Use Context");
+export function useApp() {
+  const ctx = useContext(AppContext);
+  if (!ctx) throw new Error("useApp must be used within AppProvider");
   return ctx;
 }

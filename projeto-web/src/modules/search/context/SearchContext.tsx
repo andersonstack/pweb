@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode, useMemo } from "react";
 import { MovieType } from "@/shared/types/movie-type";
 
 interface SearchContextType {
@@ -22,8 +22,13 @@ export function SearchProvider({
   const [search, setSearch] = useState("bagdad");
   const [movies, setMovies] = useState<MovieType[]>(initialMovies);
 
+  const contextValue = useMemo(
+    () => ({ search, setSearch, movies, setMovies }),
+    [search, movies]
+  );
+
   return (
-    <SearchContext.Provider value={{ search, setSearch, movies, setMovies }}>
+    <SearchContext.Provider value={contextValue}>
       {children}
     </SearchContext.Provider>
   );

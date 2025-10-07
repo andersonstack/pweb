@@ -4,6 +4,7 @@ import { Search } from "@/modules/search/components/SearchForm"
 import HomeView from "./HomeView"
 import { MovieType } from "../../shared/types/movie-type"
 import useInitialsMovies from "./hooks/use-InitialMovies"
+import { memo } from "react"
 
 export default function Home(){
   const movies: MovieType[] = useInitialsMovies();

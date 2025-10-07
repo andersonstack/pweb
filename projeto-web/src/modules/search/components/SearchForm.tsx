@@ -3,9 +3,11 @@ import { MovieType } from "@/shared/types/movie-type";
 import { searchMovies } from "../actions/searchMovies";
 import { useSearch } from "../context/SearchContext";
 import { ButtonForm } from "./ButtonForm";
+import { memo } from "react";
 
-export function Search() {
+export const Search = memo(function Search() {
   const { setMovies } = useSearch();
+  console.log("Montando o Search");
 
   async function handleSearch(formData: FormData) {
     const searchKey = formData.get("titleSearchKey") as string;
@@ -35,4 +37,4 @@ export function Search() {
       </form>
     </div>
   );
-}
+});

@@ -7,6 +7,7 @@ import useInitialsMovies from "@/features/movies/hooks/useInitialMovies"
 
 export default function Home(){
   const movies: MovieType[] = useInitialsMovies();
+
   return (
     <AppProvider initialMovies={movies}>
       <Search />

@@ -28,17 +28,17 @@ export default async function MoviePage({
         id={movie.imdbID}
         className="bg-white shadow-xl rounded-2xl p-6 max-w-md w-full text-center"
       >
-        <h1 className="text-2xl font-bold text-gray-800 mb-4">{movie.Title}</h1>
+        <h1 className="text-2xl font-bold text-gray-800 mb-4">{movie.title}</h1>
         <img
-          src={movie.Poster}
-          alt={movie.Title}
+          src={movie.poster}
+          alt={movie.title}
           className="w-full h-auto rounded-lg shadow mb-4"
         />
         <p className="text-gray-600">
-          <span className="font-semibold">Tipo:</span> {movie.Type}
+          <span className="font-semibold">Tipo:</span> {movie.type}
         </p>
         <p className="text-gray-600 mb-6">
-          <span className="font-semibold">Ano:</span> {movie.Year}
+          <span className="font-semibold">Ano:</span> {movie.year}
         </p>
         <Link
           href="/home"

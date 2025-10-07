@@ -14,15 +14,15 @@ export function CardComponent({movie, href}: CardComponentProps) {
             className="bg-white shadow-lg rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300"
         >
             <img
-              src={movie.Poster !== "N/A" ? movie.Poster : "/placeholder.png"}
-              alt={movie.Title}
+              src={movie.poster !== "N/A" ? movie.poster : "/placeholder.png"}
+              alt={movie.title}
               className="w-full h-64 object-cover"
             />
             <div className="p-4">
-              <TitleComponent title={movie.Title} />
+              <TitleComponent title={movie.title} />
               <div className="flex justify-between mt-2 text-gray-700 text-sm">
-                <p>{movie.Type}</p>
-                <p>{movie.Year}</p>
+                <p>{movie.type}</p>
+                <p>{movie.year}</p>
               </div>
             </div>
         </Link>

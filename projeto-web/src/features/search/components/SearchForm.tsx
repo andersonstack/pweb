@@ -10,9 +10,14 @@ export const Search = memo(function Search() {
   console.log("Montando o Search");
 
   async function handleSearch(formData: FormData) {
-    const searchKey = formData.get("titleSearchKey") as string;
-    const movies: MovieType[] = await searchMovies(searchKey);
-    setMovies(movies);
+    const rawKey = formData.get("titleSearchKey") as string;
+    const searchKey = rawKey.trim();
+
+    if (searchKey.length < 1) return;
+
+    const movies: MovieType = await searchMovies(searchKey);
+    const moviesArray: MovieType[] = [movies];
+    setMovies(moviesArray);
   }
 
   return (

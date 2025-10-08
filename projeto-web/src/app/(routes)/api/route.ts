@@ -8,12 +8,13 @@ export async function GET(request: Request) {
 
   let url = `http://localhost:3001/movies`;
 
-  if (titleSearchKey) url += `/${titleSearchKey}`;
+  if (titleSearchKey) url += `?title=${titleSearchKey}`;
   if (page) url += `?page=${page}`;
 
   try {
-    const data = await getOmdbData(url);
-    return NextResponse.json(data);
+    const data = await fetch(url);
+    const dataJson = await data.json();
+    return NextResponse.json(dataJson);
   } catch {
     return NextResponse.json(
       { error: "Erro ao buscar dados" },

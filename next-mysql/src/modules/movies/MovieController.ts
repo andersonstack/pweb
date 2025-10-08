@@ -10,8 +10,8 @@ class MoviesController {
   }
 
   async findyByName(req: any, res: any) {
-    const title = req.params.title
-    return await moviesRepository.findByName(title);
+    const { title } = req.params;
+      return await moviesRepository.findByName(title);
   }
 }
 

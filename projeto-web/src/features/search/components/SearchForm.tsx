@@ -16,8 +16,11 @@ export const Search = memo(function Search() {
     if (searchKey.length < 1) return;
 
     const movies: MovieType = await searchMovies(searchKey);
-    const moviesArray: MovieType[] = [movies];
-    setMovies(moviesArray);
+
+    if (movies.id != undefined) {
+      const moviesArray: MovieType[] = [movies];
+      setMovies(moviesArray);
+    }
   }
 
   return (

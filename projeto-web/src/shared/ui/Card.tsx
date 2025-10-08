@@ -1,6 +1,7 @@
 import { MovieType } from "@/shared/types/movie-type"
 import { TitleComponent } from "./Title";
 import Link from "next/link";
+import { urlHttps } from "@/lib/utils/adjustUrl";
 
 interface CardComponentProps {
     movie: MovieType;
@@ -8,18 +9,13 @@ interface CardComponentProps {
 }
 
 export function CardComponent({movie, href}: CardComponentProps) {
-    const getSecurePosterUrl = (poster: string) => {
-        if (poster === "N/A") return "/placeholder.png";
-        return poster.replace(/^http:/, 'https:');
-    };
-
     return (
         <Link href={href}
             key={movie.id}
             className="bg-white shadow-lg rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300"
         >
             <img
-              src={getSecurePosterUrl(movie.poster)}
+              src={urlHttps(movie.poster)}
               alt={movie.title}
               className="w-full h-64 object-cover"
             />

@@ -7,7 +7,7 @@ const MoviesRoutes = Router();
 MoviesRoutes.get("/", async (req, res) => {
   try {
     const movies = await moviesController.getMovies(req, res);
-    res.json(movies);
+    res.json({Search: movies});
   } catch (error: any) {
     res.status(500).json({ error: error.message });
   }
@@ -16,7 +16,7 @@ MoviesRoutes.get("/", async (req, res) => {
 MoviesRoutes.get("/:title", async (req, res) => {
   try {
     const movie = await moviesController.findyByName(req, res);
-    res.json(movie);
+    res.json({Search: movie});
   } catch (error: any) {
     res.status(500).json({error: error.message});
   }

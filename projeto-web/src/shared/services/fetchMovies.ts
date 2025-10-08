@@ -1,10 +1,10 @@
 import typeResponse from "@/lib/utils/typeResponse";
 
-export async function fetchMovies(query: string) {
-    const response = await fetch(`/api?${query}`);
+export async function fetchMovies(query?: string) {
+    let url = `/api`;
+    if (query) url += query;
+    const response = await fetch(url);
     const responseJson = await response.json();
-    console.log(responseJson.Search);
-    const moviesTyped = typeResponse(responseJson.Search);
-    console.log(moviesTyped);
+    const moviesTyped = typeResponse(responseJson);
     return moviesTyped;
 }

@@ -4,20 +4,12 @@ import { getOmdbData } from "../../../lib/omdb";
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const titleSearchKey = searchParams.get("titleSearchKey");
-  const page = searchParams.get("page") || "1";
-  const id = searchParams.get("id");
+  const page = searchParams.get("page");
 
-  if (!id && !titleSearchKey) {
-    return NextResponse.json(
-      { error: "Parâmetros insuficientes" },
-      { status: 400 }
-    );
-  }
+  let url = `http://localhost:3001/movies`;
 
-  let url = `http://www.omdbapi.com/?apikey=b31c36d8`;
-
-  if (id) url += `&i=${id}`;
-  if (titleSearchKey) url += `&s=${titleSearchKey}&page=${page}`;
+  if (titleSearchKey) url += `/${titleSearchKey}`;
+  if (page) url += `?page=${page}`;
 
   try {
     const data = await getOmdbData(url);

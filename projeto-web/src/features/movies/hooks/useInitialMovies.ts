@@ -9,7 +9,7 @@ export default function useInitialsMovies(): MovieType[] {
 
   useEffect(() => {
     const fetchInitialMovies = async () => {
-      const movies = await fetchMovies("titleSearchKey=bagdad&page=1");
+      const movies = await fetchMovies("");
       setMovies(movies);
     }
     fetchInitialMovies();

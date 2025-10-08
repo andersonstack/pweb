@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode, useMemo } from "react";
+import { createContext, useContext, useState, ReactNode, useMemo, useEffect } from "react";
 import { MovieType } from "@/shared/types/movie-type";
 
 interface AppContextType {
@@ -21,7 +21,7 @@ export function AppProvider({
   children: ReactNode;
   initialMovies?: MovieType[];
 }) {
-  const [search, setSearch] = useState("bagdad");
+  const [search, setSearch] = useState("");
   const [movies, setMovies] = useState<MovieType[]>(initialMovies);
   const [page, setPage] = useState(1);
 
@@ -29,6 +29,10 @@ export function AppProvider({
     () => ({ search, setSearch, movies, setMovies, page, setPage }),
     [search, movies, page]
   );
+
+  useEffect(() => {
+    setMovies(initialMovies);
+  }, [initialMovies]);
 
   return (
     <AppContext.Provider value={contextValue}>

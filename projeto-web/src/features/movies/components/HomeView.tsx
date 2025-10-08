@@ -1,19 +1,19 @@
 "use client"
-import { useSearchMovies } from "../hooks/useSearchMovies";
 import { useApp } from "@/shared/context/AppContext";
+import { usePagination } from "../hooks/usePagination";
 import { CardComponent } from "@/shared/ui/Card";
 import { ButtonComponent } from "@/shared/ui/Button";
 import type { MovieType } from "../../../shared/types/movie-type";
 
 export default function HomeView() {
-    const { movies, loading } = useSearchMovies();
-    const { page, setPage } = useApp();
+    const { movies, page, setPage } = useApp();
+    const { loading } = usePagination();
 
     if (loading) {
-    return <div className="flex justify-center items-center h-screen">Carregando...</div>;
+        return <div className="flex justify-center items-center h-screen">Carregando...</div>;
     }
 
-    if (movies.length === 0) {
+    if (!movies || movies.length === 0) {
         return <div className="flex justify-center items-center h-screen">Nenhum filme encontrado.</div>;
     }
 
@@ -38,7 +38,7 @@ export default function HomeView() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {movies.map((movie: MovieType) => (
-                <div key={movie.imdbID} className="bg-[#fff8f0] border rounded-xl shadow-md">
+                <div key={movie.id} className="bg-[#fff8f0] border rounded-xl shadow-md">
                 <CardComponent href={`/movie/${movie.imdbID}`} movie={movie} />
                 </div>
             ))}

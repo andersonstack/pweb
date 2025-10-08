@@ -1,10 +1,12 @@
-export default function typeResponse(responseJson: any) {
-    return responseJson.map((movie: any) => ({
-        id: movie.imdbID, 
-        title: movie.Title, 
-        year: movie.Year, 
-        type: movie.Type, 
-        poster: movie.Poster, 
+import type { MovieType } from "@/shared/types/movie-type";
+
+export default function typeResponse(responseJson: Array<any>) {
+    return responseJson.map((movie: MovieType) => ({
+        id: movie.id, 
+        title: movie.title, 
+        year: movie.year, 
+        type: movie.type, 
+        poster: movie.poster, 
         imdbID: movie.imdbID
     }));
 }

@@ -17,11 +17,17 @@ class MoviesRepository {
     return data;
   }
 
-  public async findByName(title: string) {
+  public async findByTitle(title: string) {
     return await prisma.movie.findFirst({
       where: { title: title },
       include: { images: true },
     });
+  }
+
+  public async findByID(id: string) {
+    return await prisma.movie.findUnique({
+      where: { id: id }
+    })
   }
 }
 

@@ -19,7 +19,9 @@ class MoviesRepository {
 
   public async findByTitle(title: string) {
     return await prisma.movie.findFirst({
-      where: { title: title },
+      where: { title: {
+        contains: title,
+      } },
       include: { images: true },
     });
   }

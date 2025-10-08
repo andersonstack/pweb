@@ -15,7 +15,7 @@ export function CardComponent({movie, href}: CardComponentProps) {
 
     return (
         <Link href={href}
-            key={movie.imdbID}
+            key={movie.id}
             className="bg-white shadow-lg rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300"
         >
             <img

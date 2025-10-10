@@ -17,7 +17,12 @@ export default function useHandleSubmit({
     const { name, value, type, checked } = e.target;
     setValues({ ...values, [name]: type === "checkbox" ? checked : value });
 
-    if (name === "poster") setposterPreview(values.poster);
+    if (name === "poster") {
+      if (value.trim().length > 1) {
+        console.log(value);
+        setposterPreview(value)
+      }
+    };
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -25,8 +30,11 @@ export default function useHandleSubmit({
 
     if (!values.title || !values.year || !values.poster)
       throw new Error("Campos obrigatórios faltantes!");
-    console.log(values);
+
+    if (values.series && values.movie)
+        throw new Error("Só um tipo deve ser selecionado");
   };
+
 
   return { values, handleChange, handleSubmit, posterPreview };
 }

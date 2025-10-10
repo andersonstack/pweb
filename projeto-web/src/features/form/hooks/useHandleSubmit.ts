@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { createMovieInput } from "../types/inputMovie";
 import { useApp } from "@/shared/context/AppContext";
-import { MovieType } from "@/shared/types/movie-type";
+import { useRouter } from "next/navigation";
 
 export default function useHandleSubmit({
   title = "",
@@ -14,7 +14,8 @@ export default function useHandleSubmit({
   const [posterPreview, setposterPreview] = useState<string | undefined>(
     undefined
   );
-  const {setMovies, movies} = useApp();
+  const { setMovies, movies } = useApp();
+  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
@@ -23,9 +24,9 @@ export default function useHandleSubmit({
     if (name === "poster") {
       if (value.trim().length > 1) {
         console.log(value);
-        setposterPreview(value)
+        setposterPreview(value);
       }
-    };
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -35,7 +36,7 @@ export default function useHandleSubmit({
       throw new Error("Campos obrigatórios faltantes!");
 
     if (values.series && values.movie)
-        throw new Error("Só um tipo deve ser selecionado");
+      throw new Error("Só um tipo deve ser selecionado");
 
     await sendMovie();
   };
@@ -45,8 +46,8 @@ export default function useHandleSubmit({
       title: values.title,
       year: values.year,
       type: values.series ? "series" : "movie",
-      poster: values.poster
-    }
+      poster: values.poster,
+    };
     try {
       const res = await fetch("/api", {
         method: "POST",
@@ -55,7 +56,18 @@ export default function useHandleSubmit({
       });
       if (!res.ok) throw new Error("Erro ao salvar filme");
       const result = await res.json();
-      setMovies([...movies, result.data.movie])
+      setMovies([...movies, result.data.movie]);
+      setValues({
+        title: "",
+        year: "",
+        series: false,
+        movie: false,
+        poster: "",
+      });
+      setposterPreview(undefined);
+
+      // Redireciona para a home
+      router.push("/home");
     } catch (err) {
       console.error(err);
     }

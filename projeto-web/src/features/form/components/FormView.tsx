@@ -61,7 +61,6 @@ export default function FormView() {
                 checked={values.series}
                 onChange={handleChange}
                 className="accent-[#5c4a3f] w-5 h-5"
-                required
               />
               <span className="font-semibold text-[#5c4a3f]">Série</span>
             </label>

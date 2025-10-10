@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { QueryType } from "../../types/query";
+import { MoviesCreateInput } from "./MovieValidate";
 
 const prisma = new PrismaClient();
 
@@ -9,7 +9,6 @@ class MoviesRepository {
     const skip = (page - 1) * limit;
 
     const data = await prisma.movie.findMany({
-      include: { images: true },
       skip: skip,
       take: limit,
     });
@@ -17,12 +16,15 @@ class MoviesRepository {
     return data;
   }
 
+  public async create(data: MoviesCreateInput) {
+    return await prisma.movie.create({data});
+  } 
+
   public async findByTitle(title: string) {
     return await prisma.movie.findFirst({
       where: { title: {
         contains: title,
       } },
-      include: { images: true },
     });
   }
 

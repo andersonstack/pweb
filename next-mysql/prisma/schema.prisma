@@ -11,34 +11,9 @@ model Movie {
   id           String   @id @default(cuid())
   title        String
   year         String
-  rated        String?
-  released     String?
-  runtime      String?
-  genre        String?
-  director     String?
-  writer       String?
-  actors       String?
-  plot         String?
-  language     String?
-  country      String?
-  awards       String?
   poster       String?
-  metascore    String?
-  imdbRating   String?
-  imdbVotes    String?
   imdbID       String
   type         MediaType
-  response     Boolean
-  totalSeasons Int?
-  comingSoon   Boolean? @default(false)
-  images       Image[]
-}
-
-model Image {
-  id      String @id @default(cuid())
-  url     String
-  media   Movie  @relation(fields: [mediaId], references: [id])
-  mediaId String
 }
 
 enum MediaType {

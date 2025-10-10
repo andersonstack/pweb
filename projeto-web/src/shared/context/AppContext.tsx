@@ -31,7 +31,9 @@ export function AppProvider({
   );
 
   useEffect(() => {
-    setMovies(initialMovies);
+    if (initialMovies.length > 0) {
+      setMovies(initialMovies);
+    }
   }, [initialMovies]);
 
   return (

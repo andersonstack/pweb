@@ -1,18 +1,18 @@
 import { NextResponse } from "next/server";
 import { getOmdbData } from "../../../lib/omdb";
 
-let url = `http://localhost:3001/movies`;
-
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const titleSearchKey = searchParams.get("titleSearchKey");
   const page = searchParams.get("page");
 
-  if (titleSearchKey) url += `?title=${titleSearchKey}`;
-  if (page) url += `?page=${page}`;
+  let requestUrl = `http://localhost:3001/movies`;
+  
+  if (titleSearchKey) requestUrl += `?title=${titleSearchKey}`;
+  if (page) requestUrl += `${titleSearchKey ? '&' : '?'}page=${page}`;
 
   try {
-    const data = await fetch(url);
+    const data = await fetch(requestUrl);
     const dataJson = await data.json();
     return NextResponse.json(dataJson);
   } catch {
@@ -25,9 +25,10 @@ export async function GET(request: Request) {
 
 export async function POST(req: Request) {
   const { title, year, type, poster } = await req.json();
+  let requestUrl = `http://localhost:3001/movies`;
 
   try {
-    const data = await fetch(`${url}/create`, {
+    const data = await fetch(`${requestUrl}/create`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ title, year, type, poster }),

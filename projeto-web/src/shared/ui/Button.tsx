@@ -1,5 +1,5 @@
 interface ButtonComponentProps {
-    onClick: (value: any) => void;
+    onClick: (value: unknown) => void;
     name: string;
     disabled?: boolean;
     className: string;

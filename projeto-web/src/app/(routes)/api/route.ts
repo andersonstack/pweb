@@ -24,7 +24,7 @@ export async function GET(request: Request) {
 
 export async function POST(req: Request) {
   const { title, year, type, poster } = await req.json();
-  let requestUrl = `http://localhost:3001/movies`;
+  const requestUrl = `http://localhost:3001/movies`;
 
   try {
     const data = await fetch(`${requestUrl}/create`, {
@@ -37,7 +37,7 @@ export async function POST(req: Request) {
       {data: dataJson},
       { status: 200 },
     );
-  } catch (e) {
+  } catch {
     return NextResponse.json(
       {
         error: "Erro ao adicionar um novo filme",

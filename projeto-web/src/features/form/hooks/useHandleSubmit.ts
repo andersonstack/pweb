@@ -67,7 +67,7 @@ export default function useHandleSubmit({
 
       // Redireciona para a home
       router.push("/home");
-    } catch (err) {
+    } catch {
       // Error handling could be improved here
     }
   };

@@ -33,8 +33,30 @@ export default function useHandleSubmit({
 
     if (values.series && values.movie)
         throw new Error("Só um tipo deve ser selecionado");
+
+    await sendMovie();
   };
 
+  const sendMovie = async () => {
+    const data = {
+      title: values.title,
+      year: values.year,
+      type: values.series ? "series" : "movie",
+      poster: values.poster
+    }
+    try {
+      const res = await fetch("/api", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error("Erro ao salvar filme");
+      const result = await res.json();
+      console.log(result.data.movie);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return { values, handleChange, handleSubmit, posterPreview };
 }

@@ -7,10 +7,14 @@ const MoviesRoutes = Router();
 MoviesRoutes.get("/", async (req, res) => {
   try {
     const movies = await moviesController.getMovies(req, res);
-    res.json({Search: movies});
+    res.json({ Search: movies });
   } catch (error: any) {
     res.status(500).json({ error: error.message });
   }
+});
+
+MoviesRoutes.post("/create", async (req, res) => {
+  moviesController.create(req, res);
 });
 
 export default MoviesRoutes;

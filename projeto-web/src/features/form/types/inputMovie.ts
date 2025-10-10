@@ -1,6 +1,7 @@
 export type createMovieInput = {
     title: string,
     year: string,
-    type: string,
+    series?: boolean,
+    movie?: boolean,
     poster: string,
 }

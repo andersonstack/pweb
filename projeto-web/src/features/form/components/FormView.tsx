@@ -4,7 +4,7 @@ import useHandleSubmit from "../hooks/useHandleSubmit";
 
 export default function FormView() {
   const { values, handleChange, handleSubmit, posterPreview } = useHandleSubmit(
-    { title: "", year: "", type: "", poster: "" }
+    { title: "", year: "", movie: false, series: false, poster: "" }
   );
 
   return (
@@ -15,7 +15,7 @@ export default function FormView() {
         className="max-w-md mx-auto mt-8 p-6 bg-[#ffd8b5] rounded shadow text-[#5c4a3f]"
       >
         <h2 className="text-2xl font-bold mb-4 text-[#5c4a3f]">
-          Adicionar Filme
+          Adicionar Mídia
         </h2>
         <div className="mb-4">
           <label className="block mb-1 font-medium text-[#5c4a3f]">
@@ -38,19 +38,34 @@ export default function FormView() {
             value={values.year}
             onChange={handleChange}
             className="w-full border rounded px-3 py-2 text-[#5c4a3f] bg-white"
-            required
           />
         </div>
-        <div className="mb-4">
-          <label className="block mb-1 font-medium text-[#5c4a3f]">Tipo</label>
-          <input
-            type="text"
-            name="type"
-            value={values.type}
-            onChange={handleChange}
-            className="w-full border rounded px-3 py-2 text-[#5c4a3f] bg-white"
-            required
-          />
+        <div className="mb-4 flex justify-evenly" aria-label="Checkbox para tipo de mídia">
+          <div aria-label="Checkbox para filme">
+            <label className="block mb-1 font-medium text-[#5c4a3f]">
+              Filme
+            </label>
+            <input
+              type="checkbox"
+              name="movie"
+              checked={values.movie}
+              onChange={handleChange}
+              className="w-full border rounded px-3 py-2 text-[#5c4a3f] bg-white"
+            />
+          </div>
+          <div aria-label="Checkbox para série">
+            <label className="block mb-1 font-medium text-[#5c4a3f]">
+              Série
+            </label>
+            <input
+              type="checkbox"
+              name="series"
+              checked={values.series}
+              onChange={handleChange}
+              className="w-full border rounded px-3 py-2 text-[#5c4a3f] bg-white"
+              required
+            />
+          </div>
         </div>
         <div className="mb-4">
           <label className="block mb-1 font-medium text-[#5c4a3f]">

@@ -23,14 +23,12 @@ export default function HomeView() {
             <div className="flex justify-between mb-8">
                 <ButtonComponent
                     disabled={page === 1}
-                    page={page}
-                    setPage={() => setPage(page - 1)}
+                    onClick={() => setPage(page - 1)}
                     name="⬅ Página anterior"
                     className="bg-[#ffd8b5] text-[#5c4a3f] px-4 py-2 rounded-lg hover:bg-[#ffc999] transition-colors disabled:opacity-50"
                 />
                 <ButtonComponent
-                page={page}
-                    setPage={() => setPage(page + 1)}
+                    onClick={() => setPage(page + 1)}
                     name="Próxima página ➡"
                     className="bg-[#ffd8b5] text-[#5c4a3f] px-4 py-2 rounded-lg hover:bg-[#ffc999] transition-colors"
                 />

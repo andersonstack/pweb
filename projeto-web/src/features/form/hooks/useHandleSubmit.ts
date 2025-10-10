@@ -23,7 +23,6 @@ export default function useHandleSubmit({
 
     if (name === "poster") {
       if (value.trim().length > 1) {
-        console.log(value);
         setposterPreview(value);
       }
     }
@@ -69,7 +68,7 @@ export default function useHandleSubmit({
       // Redireciona para a home
       router.push("/home");
     } catch (err) {
-      console.error(err);
+      // Error handling could be improved here
     }
   };
 

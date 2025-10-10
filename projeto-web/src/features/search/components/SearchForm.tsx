@@ -7,7 +7,6 @@ import { memo } from "react";
 
 export const Search = memo(function Search() {
   const { setMovies } = useApp();
-  console.log("Montando o Search");
 
   async function handleSearch(formData: FormData) {
     const rawKey = formData.get("titleSearchKey") as string;

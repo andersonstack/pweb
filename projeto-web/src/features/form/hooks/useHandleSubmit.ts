@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { createMovieInput } from "../types/inputMovie";
+import { useApp } from "@/shared/context/AppContext";
+import { MovieType } from "@/shared/types/movie-type";
 
 export default function useHandleSubmit({
   title = "",
@@ -12,6 +14,7 @@ export default function useHandleSubmit({
   const [posterPreview, setposterPreview] = useState<string | undefined>(
     undefined
   );
+  const {setMovies, movies} = useApp();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
@@ -52,7 +55,7 @@ export default function useHandleSubmit({
       });
       if (!res.ok) throw new Error("Erro ao salvar filme");
       const result = await res.json();
-      console.log(result.data.movie);
+      setMovies([...movies, result.data.movie])
     } catch (err) {
       console.error(err);
     }

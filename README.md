@@ -47,4 +47,4 @@ npm run seed
 ```
 ---
 
-- [Receita 22](https://github.com/anderson-gpc/pweb/tree/nextjs/receita22)
+- [Receita 22 e 23](https://github.com/anderson-gpc/pweb/tree/nextjs/receita22)

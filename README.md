@@ -46,3 +46,5 @@ npx prisma migrate dev
 npm run seed
 ```
 ---
+
+- [Receita 22](https://github.com/anderson-gpc/pweb/tree/nextjs/receita22)

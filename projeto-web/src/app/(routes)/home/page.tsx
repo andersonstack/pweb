@@ -2,8 +2,8 @@
 import { useCallback } from "react";
 import { AppProvider, useApp } from "@/shared/context/AppContext";
 import HomeView from "@/features/movies/components/HomeView";
+import { LinkToPage } from "@/shared/ui/LinkToPage";
 import { Search } from "@/features/search/components/SearchForm";
-import Link from "next/link";
 import { fetchMovies } from "@/shared/services/fetchMovies";
 
 function HomeContent() {
@@ -21,12 +21,7 @@ function HomeContent() {
     <>
       <div>
         <Search onSearch={handleSearch} />
-        <Link
-          href={"/home/add"}
-          className="bg-primary text-[1.5rem] px-[1rem] cursor-pointer"
-        >
-          + Adicionar novo filme
-        </Link>
+        <LinkToPage route="/home/add" label="+ Adicionar novo filme" />
       </div>
       <HomeView />
     </>

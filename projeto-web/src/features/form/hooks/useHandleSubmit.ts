@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { createMovieInput } from "../types/inputMovie";
+import { MovieInputType } from "../../../shared/types/movieinput-type";
 import { useApp } from "@/shared/context/AppContext";
 import { useRouter } from "next/navigation";
 
@@ -9,7 +9,7 @@ export default function useHandleSubmit({
   series = false,
   movie = false,
   poster = "",
-}: createMovieInput) {
+}: MovieInputType) {
   const [values, setValues] = useState({ title, year, series, movie, poster });
   const [posterPreview, setposterPreview] = useState<string | undefined>(
     undefined

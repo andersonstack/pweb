@@ -5,7 +5,7 @@ import { fetchMovies } from "@/shared/services/fetchMovies";
 
 export function usePagination() {
   const [loading, setLoading] = useState<boolean>(false);
-  const { setMovies, search, page } = useApp();
+  const { setMovies, page } = useApp();
 
   useEffect(() => {
     async function fetchMoviesData() {
@@ -19,7 +19,7 @@ export function usePagination() {
       }
     }
     fetchMoviesData();
-  }, [search, page, setMovies]);
+  }, [page, setMovies]);
 
   return { loading };
 }

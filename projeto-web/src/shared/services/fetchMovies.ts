@@ -6,7 +6,6 @@ export async function fetchMovies(query?: string) {
 
     const response = await fetch(url);
     const responseJson = await response.json();
-    const moviesTyped = typeResponse(responseJson?.Search ?? responseJson);
-
-    return moviesTyped;
+    // const moviesTyped = typeResponse(responseJson?.Search ?? responseJson);
+    return responseJson?.Search ?? responseJson;
 }

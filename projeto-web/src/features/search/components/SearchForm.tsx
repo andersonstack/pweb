@@ -1,25 +1,18 @@
 "use client";
-import { MovieType } from "@/shared/types/movie-type";
-import { searchMovies } from "../actions/searchMovies";
-import { useApp } from "@/shared/context/AppContext";
 import { ButtonForm } from "./ButtonForm";
 import { memo } from "react";
 
-export const Search = memo(function Search() {
-  const { setMovies } = useApp();
+interface SearchProps  {
+  onSearch: (searchKey: string) => void;
+}
 
+export const Search = memo(function Search({onSearch} : SearchProps) {
+  console.log("Montando Search");
   async function handleSearch(formData: FormData) {
     const rawKey = formData.get("titleSearchKey") as string;
     const searchKey = rawKey.trim();
-
     if (searchKey.length < 1) return;
-
-    const movies: MovieType = await searchMovies(searchKey);
-
-    if (movies.id != undefined) {
-      const moviesArray: MovieType[] = [movies];
-      setMovies(moviesArray);
-    }
+    onSearch(searchKey);
   }
 
   return (

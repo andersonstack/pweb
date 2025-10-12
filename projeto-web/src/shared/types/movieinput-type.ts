@@ -1,4 +1,4 @@
-export type createMovieInput = {
+export type MovieInputType = {
     title: string,
     year: string,
     series?: boolean,

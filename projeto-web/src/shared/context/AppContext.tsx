@@ -4,8 +4,6 @@ import { createContext, useContext, useState, ReactNode, useMemo, useEffect } fr
 import { MovieType } from "@/shared/types/movie-type";
 
 interface AppContextType {
-  search: string;
-  setSearch: (value: string) => void;
   movies: MovieType[];
   setMovies: (movies: MovieType[]) => void;
   page: number;
@@ -21,13 +19,12 @@ export function AppProvider({
   children: ReactNode;
   initialMovies?: MovieType[];
 }) {
-  const [search, setSearch] = useState("");
   const [movies, setMovies] = useState<MovieType[]>(initialMovies);
   const [page, setPage] = useState(1);
 
   const contextValue = useMemo(
-    () => ({ search, setSearch, movies, setMovies, page, setPage }),
-    [search, movies, page]
+    () => ({ movies, setMovies, page, setPage }),
+    [movies, page]
   );
 
   useEffect(() => {

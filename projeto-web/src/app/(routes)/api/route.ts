@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { getCachedMovies } from "@/lib/getCachedMovies";
+import { revalidateTag } from "next/cache";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -6,14 +8,13 @@ export async function GET(request: Request) {
   const page = searchParams.get("page");
 
   let requestUrl = `http://localhost:3001/movies`;
-  
+
   if (titleSearchKey) requestUrl += `?title=${titleSearchKey}`;
-  if (page) requestUrl += `${titleSearchKey ? '&' : '?'}page=${page}`;
+  if (page) requestUrl += `${titleSearchKey ? "&" : "?"}page=${page}`;
 
   try {
-    const data = await fetch(requestUrl);
-    const dataJson = await data.json();
-    return NextResponse.json(dataJson);
+    const data = await getCachedMovies(requestUrl);
+    return NextResponse.json(data);
   } catch {
     return NextResponse.json(
       { error: "Erro ao buscar dados" },
@@ -33,10 +34,8 @@ export async function POST(req: Request) {
       body: JSON.stringify({ title, year, type, poster }),
     });
     const dataJson = await data.json();
-    return NextResponse.json(
-      {data: dataJson},
-      { status: 200 },
-    );
+    await revalidateTag("movies");
+    return NextResponse.json({ data: dataJson }, { status: 200 });
   } catch {
     return NextResponse.json(
       {

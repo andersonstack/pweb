@@ -13,6 +13,7 @@ export function usePagination() {
       setLoading(true);
       try {
         const movies = await fetchMovies(url);
+        if (movies === undefined) return;
         setMovies(movies);
       } finally {
         setLoading(false);

@@ -4,10 +4,14 @@ import { usePagination } from "../hooks/usePagination";
 import { CardComponent } from "@/shared/ui/Card";
 import { ButtonComponent } from "@/shared/ui/Button";
 import type { MovieType } from "../../../shared/types/movie-type";
+import { useState } from "react";
 
 export default function HomeView() {
+  const [disabledAfter, setDisabledAfter] = useState(false);
+
     const { movies, page, setPage } = useApp();
-    const { loading } = usePagination();
+    const { loading } = usePagination(setDisabledAfter);
+
 
     if (loading) {
         return <div className="flex justify-center items-center h-screen">Carregando...</div>;
@@ -28,9 +32,10 @@ export default function HomeView() {
                     className="bg-[#ffd8b5] text-[#5c4a3f] px-4 py-2 rounded-lg hover:bg-[#ffc999] transition-colors disabled:opacity-50"
                 />
                 <ButtonComponent
+                    disabled={disabledAfter}
                     onClick={() => setPage(page + 1)}
                     name="Próxima página ➡"
-                    className="bg-[#ffd8b5] text-[#5c4a3f] px-4 py-2 rounded-lg hover:bg-[#ffc999] transition-colors"
+                    className="bg-[#ffd8b5] text-[#5c4a3f] px-4 py-2 rounded-lg hover:bg-[#ffc999] transition-colors disabled:opacity-50"
                 />
             </div>
 
